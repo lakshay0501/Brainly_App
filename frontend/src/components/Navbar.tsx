@@ -1,0 +1,29 @@
+import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+
+const Navbar = () => {
+  const { user, logout } = useAuth();
+
+  return (
+    <nav className="nav">
+      <Link to="/" className="logo">Brainly Clone</Link>
+
+      <div>
+        {user ? (
+          <>
+            <span>Hello, {user.name}</span>
+            <Link to="/ask">Ask Question</Link>
+            <button onClick={logout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link> |{" "}
+            <Link to="/register">Register</Link>
+          </>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
